@@ -4,6 +4,11 @@ const validUrl = require('valid-url');
 const URL = require('../models/url');
 
 //POST HTTP method
+router.get('/', (req,res) => {
+    res.send("Whom");
+});
+
+//POST HTTP method
 router.post('/create', (req,res) => {
 
     let body = req.body;

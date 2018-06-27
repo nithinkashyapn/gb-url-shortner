@@ -26,27 +26,28 @@ app.get('/', (req,res) => {
     res.send("Homepage URL");
 })
 
+app.use('/url',url);
+
 app.get('/:id', (req,res) => {
 
-    if(req.params.id !== "")
-    {
-        URL
-            .findOneAndUpdate({ shortURL: req.params.id }, {$inc: { accessCounts: 1 }})
-            .then(data=>{
+    URL.findOneAndUpdate({ shortURL: req.params.id }, {$inc: { accessCounts: 1 }})
+        .then(data=>{
+            if(data.timeOfDeletion > Math.floor(Date.now()/1000))
+            {
                 res.redirect(data.longURL);
-            })
-            .catch(err=>{
-                res.redirect(`https://bunk.work`);
-            });
-    }
-    else
-    {
-        res.redirect(`https://bunk.work`);
-    }
+            }
+            else
+            {
+                URL.findOneAndRemove({ shortURL: data.shortURL })
+                    .then(()=>{res.redirect(`https://bunk.work`)})
+                    .catch(()=>{res.send(`Could not remove URL`)});
+            }
+        })
+        .catch(err=>{
+            res.redirect(`https://bunk.work`);
+        });
 
 })
-
-app.use('/url',url);
 
 app.listen(port, () => {
     console.log(`Starting the server at port ${port}`);
