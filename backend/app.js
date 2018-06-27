@@ -31,7 +31,7 @@ app.get('/:id', (req,res) => {
     if(req.params.id !== "")
     {
         URL
-            .findOne({ shortURL: req.params.id })
+            .findOneAndUpdate({ shortURL: req.params.id }, {$inc: { accessCounts: 1 }})
             .then(data=>{
                 res.redirect(data.longURL);
             })
