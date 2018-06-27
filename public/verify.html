@@ -30,9 +30,11 @@
 
     <script>
         $("#formoid").submit(function(event) {
+            let path = window.location.pathname;
+            path = path.substring(path.indexOf("private/") + 8);
             event.preventDefault();
             var $form = $( this ),url = $form.attr( 'action' );
-            var posting = $.post( "/private/verify", { endpoint: '77', passcode: $('#passcode').val() } );
+            var posting = $.post( "/private/verify", { endpoint: path, passcode: $('#passcode').val() } );
             posting.done(function( data ) {
                 window.location.replace(data.message);
             })

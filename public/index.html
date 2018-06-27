@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>GameBerry URL Shortner</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <style>
+        body { padding-top:50px; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <div class="container" style="text-align:center">
+        <div class="jumbotron">
+            <div id="main">
+                <div id="sidebar"></div>
+                <div id="page-wrap"></div>
+            </div>
+            <form id="formoid" method="post">
+                <div>
+                    <h1><input type="url" id="url" name="url" placeholder="long url"/></h1>
+                </div>
+                <div>
+                    <h1><input type="text" id="shorturl" name="shorturl" placeholder="short url (optional)"/></h1>
+                </div>
+                <div>
+                    <h1><input type="password" id="secure" name="secure" placeholder="passcode (optional)"/></h1>
+                </div>
+                <hr>
+                <div>
+                    <h1><input type="number" id="validity" name="validity" placeholder="expire - default: 30 days"/></h1>
+                </div>
+                <hr>
+                <div>
+                    <input type="submit" id="submitButton" name="submitButton" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        /* attach a submit handler to the form */
+        $("#formoid").submit(function(event) {
+            event.preventDefault();
+            var $form = $( this ),url = $form.attr( 'action' );
+            var posting = $.post( "/url/create", { endpoint: '77', passcode: $('#passcode').val() } );
+            posting.done(function( data ) {
+                alert('success');
+            })
+            .fail(function() {
+                alert( "Wrong" );
+            });
+        });
+    </script>
+
+</body>
+</html>

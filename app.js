@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req,res) => {
-    res.send("Homepage URL");
+    res.sendFile(path.resolve(__dirname + '/./public/index.html'));
 })
 
 app.use('/url',url);
