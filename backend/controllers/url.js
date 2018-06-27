@@ -14,6 +14,7 @@ router.get('/', (req,res) => {
 router.post('/create', (req,res) => {
 
     let body = req.body;
+    console.log(body);
     URL.find({shortURL: body.shortURL})
     .then((urlFound)=>{
         if(urlFound.length > 0)
@@ -27,7 +28,7 @@ router.post('/create', (req,res) => {
                 let data = {
                     shortURL: body.shortURL ? body.shortURL : shortid.generate(),
                     longURL: body.longURL,
-                    timeOfDeletion: body.timeOfDeletion * 86400 ? body.timeOfDeletion * 86400 : Math.floor(Date.now()/1000 + 2629743),
+                    timeOfDeletion: body.timeOfDeletion ? Math.floor(Date.now()/1000 + (body.timeOfDeletion * 86400)) : Math.floor(Date.now()/1000 + 2629743),
                     privateOrPublic: body.privateOrPublic ? body.privateOrPublic : "public"
                 };
         
