@@ -6,11 +6,12 @@ const bodyParser = require("body-parser");
 const URL = require('./models/url');
 
 const config = require("./config/database");
+
 const url = require("./controllers/url");
+const private = require("./controllers/private");
 
 mongoose.connect(config.database, (err, db) => {
-    if (err)
-        console.log("Error", err);
+    if (err) console.log("Error", err);
 });
 
 const app = express();
@@ -27,6 +28,7 @@ app.get('/', (req,res) => {
 })
 
 app.use('/url',url);
+app.use('/private',private);
 
 app.get('/:id', (req,res) => {
 
@@ -34,7 +36,13 @@ app.get('/:id', (req,res) => {
         .then(data=>{
             if(data.timeOfDeletion > Math.floor(Date.now()/1000))
             {
-                res.redirect(data.longURL);
+                if(data.privateOrPublic !== 'public'){
+                    res.redirect(`/private/`+ req.params.id);
+                }
+                else
+                {
+                    res.redirect(data.longURL);
+                }
             }
             else
             {

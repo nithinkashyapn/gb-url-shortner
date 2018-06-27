@@ -16,12 +16,10 @@ const URLSchema = mongoose.Schema({
     },
     timeOfDeletion: {
         type: Number,
-        default: (Math.floor(Date.now()/1000) + 2629743),
         required: true
     },
     privateOrPublic: {
         type: String,
-        default: 'public',
         required: true
     },
     accessCounts: {
@@ -30,6 +28,4 @@ const URLSchema = mongoose.Schema({
     }
 });
 
-const URL = mongoose.model('URL', URLSchema );
-
-module.exports = URL;
+const URL = module.exports = mongoose.model('URL', URLSchema );
