@@ -3,11 +3,15 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 const bodyParser = require("body-parser");
+const URL = require('./models/url');
 
 const config = require("./config/database");
 const url = require("./controllers/url");
 
-mongoose.connect(config.database);
+mongoose.connect(config.database, (err, db) => {
+    if (err)
+        console.log("Error", err);
+});
 
 const app = express();
 const port = 3000;
@@ -19,7 +23,27 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req,res) => {
-    res.send("Invalid page");
+    res.send("Homepage URL");
+})
+
+app.get('/:id', (req,res) => {
+
+    if(req.params.id !== "")
+    {
+        URL
+            .findOne({ shortURL: req.params.id })
+            .then(data=>{
+
+            })
+            .catch(err=>{
+
+            });
+    }
+    else
+    {
+        res.send("Invalid URL");
+    }
+
 })
 
 app.use('/url',url);

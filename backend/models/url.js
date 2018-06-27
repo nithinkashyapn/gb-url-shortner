@@ -1,15 +1,32 @@
 const mongoose = require('mongoose');
 
 const URLSchema = mongoose.Schema({
-    title: {
+    shortURL: {
         type: String,
         required: true
     },
-    description: String,
-    category: {
+    longURL: {
         type: String,
-        required: true,
-        enum: ['High', 'Medium', 'Low']
+        required: true
+    },
+    timeOfCreation: {
+        type: Number,
+        default: Math.floor(Date.now()/1000),
+        required: true
+    },
+    timeOfDeletion: {
+        type: Number,
+        default: (Math.floor(Date.now()/1000) + 2629743),
+        required: true
+    },
+    privateOrPublic: {
+        type: String,
+        default: 'public',
+        required: true
+    },
+    accessCounts: {
+        type: Number,
+        default: 0
     }
 });
 
