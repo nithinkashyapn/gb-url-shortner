@@ -33,15 +33,15 @@ app.get('/:id', (req,res) => {
         URL
             .findOne({ shortURL: req.params.id })
             .then(data=>{
-
+                res.redirect(data.longURL);
             })
             .catch(err=>{
-
+                res.redirect(`https://bunk.work`);
             });
     }
     else
     {
-        res.send("Invalid URL");
+        res.redirect(`https://bunk.work`);
     }
 
 })
