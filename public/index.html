@@ -13,19 +13,32 @@
 
     <div class="container" style="text-align:center">
         <div class="jumbotron">
-            <h1>Gameberry URL Shortner</h1>
+            <h3>
+                Gameberry URL Shortner
+            </h3>
             <hr>
             <div id="main">
                 <form id="formoid" method="post">
-                    <div>
-                        <h1><input type="url" id="url" name="url" placeholder="long url" required/>    <input type="text" id="shorturl" name="shorturl" placeholder="short url (optional)"/></h1>
+                    <div class="row">
+                        <div class="twelve columns">
+                            <input class="u-full-width" type="url" id="url" name="url" placeholder="Long url" autofocus required/>
+                        </div>
                     </div>
-                    <div>
-                        <h1><input type="password" id="secure" name="secure" placeholder="passcode (optional)"/>    <input type="number" id="validity" name="validity" placeholder="expire (30)"/></h1>
+                    <br>
+                    <div class="row">
+                        <div class="four columns">
+                            <input class="u-full-width" type="text" id="shorturl" name="shorturl" placeholder="Short url (optional)"/>
+                        </div>
+                        <div class="four columns">
+                            <input class="u-full-width" type="password" id="secure" name="secure" placeholder="Passcode (optional)"/>
+                        </div>
+                        <div class="four columns">
+                            <input class="u-full-width" type="number" id="validity" name="validity" placeholder="Expire (30)"/>
+                        </div>                                                      
                     </div>
                     <hr>
-                    <div>
-                        <input type="submit" id="submitButton" name="submitButton" value="Submit">
+                    <div class="row">
+                        <input class="u-full-width button-primary" type="submit" id="submitButton" name="submitButton" value="Submit">
                     </div>
                 </form>
             </div>
