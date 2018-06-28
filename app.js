@@ -49,14 +49,18 @@ app.get('/:id', (req,res) => {
             else
             {
                 URL.findOneAndRemove({ shortURL: data.shortURL })
-                    .then(()=>{res.redirect(`https://bunk.work`)})
+                    .then(()=>{res.redirect(`http://gameberrylabs.com/`)})
                     .catch(()=>{res.send(`Could not remove URL`)});
             }
         })
         .catch(err=>{
-            res.redirect(`https://bunk.work`);
+            res.redirect(`http://gameberrylabs.com/`);
         });
 
+})
+
+app.get('*', (req,res) => {
+    res.sendFile(path.resolve(__dirname + '/./public/404.html'));
 })
 
 app.listen(port, () => {

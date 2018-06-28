@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const URL = require('../models/url');
 const CONSTANT = require('../config/constant');
+const path = require('path');
 
 router.get('/:id', (req,res) => {
 
@@ -30,5 +31,9 @@ router.get('/:id', (req,res) => {
     });
 
 });
+
+router.get('*', (req,res) => {
+    res.sendFile(path.resolve(__dirname + '/../public/404.html'));
+})
 
 module.exports = router;

@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const shortid = require('clean-shortid');
 const validUrl = require('valid-url');
+const path = require('path');
 
 const URL = require('../models/url');
 const CONSTANT = require('../config/constant');
 
-//POST HTTP method
 router.post('/create', (req,res) => {
 
     let body = req.body;
@@ -18,7 +18,7 @@ router.post('/create', (req,res) => {
         }
         else 
         {
-            if(validUrl.isUri(body.longURL))
+            if(validUrl.isUri(body.longURL) && body.longURL !== "")
             {
                 let data = {
                     shortURL: body.shortURL ? body.shortURL : shortid.generate(),
@@ -43,5 +43,9 @@ router.post('/create', (req,res) => {
     });
 
 });
+
+router.get('*', (req,res) => {
+    res.sendFile(path.resolve(__dirname + '/../public/404.html'));
+})
 
 module.exports = router;

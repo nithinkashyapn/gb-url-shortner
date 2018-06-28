@@ -27,4 +27,8 @@ router.post('/verify', (req,res) => {
 
 });
 
+router.get('*', (req,res) => {
+    res.sendFile(path.resolve(__dirname + '/../public/404.html'));
+})
+
 module.exports = router;
