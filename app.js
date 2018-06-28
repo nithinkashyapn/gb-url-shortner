@@ -38,7 +38,7 @@ app.get('/:id', (req,res) => {
         .then(data=>{
             if(data.timeOfDeletion > Math.floor(Date.now()/1000))
             {
-                if(data.privateOrPublic !== 'public'){
+                if(data.privateOrPublic !== 'mV6Bi0deXgRkHVFu2ZNT0btmcIwGtNtG'){
                     res.redirect(`/private/`+ req.params.id);
                 }
                 else

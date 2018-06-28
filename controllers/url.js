@@ -24,7 +24,7 @@ router.post('/create', (req,res) => {
                     shortURL: body.shortURL ? body.shortURL : shortid.generate(),
                     longURL: body.longURL,
                     timeOfDeletion: body.timeOfDeletion ? Math.floor(Date.now()/1000 + (body.timeOfDeletion * 86400)) : Math.floor(Date.now()/1000 + 2629743),
-                    privateOrPublic: body.privateOrPublic ? body.privateOrPublic : "public"
+                    privateOrPublic: body.privateOrPublic ? body.privateOrPublic : "mV6Bi0deXgRkHVFu2ZNT0btmcIwGtNtG"
                 };
         
                 URL.create(data, function (err, mongodata){
