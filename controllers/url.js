@@ -4,11 +4,7 @@ const shortid = require('clean-shortid');
 const validUrl = require('valid-url');
 
 const URL = require('../models/url');
-
-//POST HTTP method
-router.get('/', (req,res) => {
-    res.redirect("/");
-});
+const CONSTANT = require('../config/constant');
 
 //POST HTTP method
 router.post('/create', (req,res) => {
@@ -33,7 +29,7 @@ router.post('/create', (req,res) => {
         
                 URL.create(data, function (err, mongodata){
                     if (err) res.status(400).json({ error: 'Could not create URL' })
-                    else res.status(200).json({ message: `https://gburlshort.herokuapp.com/` + mongodata.shortURL})
+                    else res.status(200).json({ message: `${CONSTANT.domain}` + mongodata.shortURL})
                 });
             }
             else
