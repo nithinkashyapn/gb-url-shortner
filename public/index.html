@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>GameBerry URL Shortner</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
     <style>
         body { padding-top:50px; }
     </style>
@@ -13,23 +13,14 @@
 
     <div class="container" style="text-align:center">
         <div class="jumbotron">
-            <div id="main">
-                <div id="sidebar"></div>
-                <div id="page-wrap"></div>
-            </div>
+            <h1>Gameberry URL Shortner</h1>
+            <hr>
             <form id="formoid" method="post">
                 <div>
-                    <h1><input type="url" id="url" name="url" placeholder="long url"/></h1>
+                    <h1><input type="url" id="url" name="url" placeholder="long url" required/>    <input type="text" id="shorturl" name="shorturl" placeholder="short url (optional)"/></h1>
                 </div>
                 <div>
-                    <h1><input type="text" id="shorturl" name="shorturl" placeholder="short url (optional)"/></h1>
-                </div>
-                <div>
-                    <h1><input type="password" id="secure" name="secure" placeholder="passcode (optional)"/></h1>
-                </div>
-                <hr>
-                <div>
-                    <h1><input type="number" id="validity" name="validity" placeholder="expire - default: 30 days"/></h1>
+                    <h1><input type="password" id="secure" name="secure" placeholder="passcode (optional)"/>    <input type="number" id="validity" name="validity" placeholder="expire (30)"/></h1>
                 </div>
                 <hr>
                 <div>
