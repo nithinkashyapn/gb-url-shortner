@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const validUrl = require('valid-url');
 const path = require('path');
 const URL = require('../models/url');
 

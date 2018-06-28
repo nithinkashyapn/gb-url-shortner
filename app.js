@@ -9,6 +9,7 @@ const config = require("./config/database");
 
 const url = require("./controllers/url");
 const private = require("./controllers/private");
+const info = require("./controllers/info");
 
 mongoose.connect(config.database, (err, db) => {
     if (err) console.log("Error", err);
@@ -29,6 +30,7 @@ app.get('/', (req,res) => {
 
 app.use('/url',url);
 app.use('/private',private);
+app.use('/info',info);
 
 app.get('/:id', (req,res) => {
 
