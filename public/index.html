@@ -15,35 +15,38 @@
         <div class="jumbotron">
             <h1>Gameberry URL Shortner</h1>
             <hr>
-            <form id="formoid" method="post">
-                <div>
-                    <h1><input type="url" id="url" name="url" placeholder="long url" required/>    <input type="text" id="shorturl" name="shorturl" placeholder="short url (optional)"/></h1>
-                </div>
-                <div>
-                    <h1><input type="password" id="secure" name="secure" placeholder="passcode (optional)"/>    <input type="number" id="validity" name="validity" placeholder="expire (30)"/></h1>
-                </div>
-                <hr>
-                <div>
-                    <input type="submit" id="submitButton" name="submitButton" value="Submit">
-                </div>
-            </form>
+            <div id="main">
+                <form id="formoid" method="post">
+                    <div>
+                        <h1><input type="url" id="url" name="url" placeholder="long url" required/>    <input type="text" id="shorturl" name="shorturl" placeholder="short url (optional)"/></h1>
+                    </div>
+                    <div>
+                        <h1><input type="password" id="secure" name="secure" placeholder="passcode (optional)"/>    <input type="number" id="validity" name="validity" placeholder="expire (30)"/></h1>
+                    </div>
+                    <hr>
+                    <div>
+                        <input type="submit" id="submitButton" name="submitButton" value="Submit">
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
     <script>
-        /* attach a submit handler to the form */
+
         $("#formoid").submit(function(event) {
             event.preventDefault();
             var $form = $( this ),url = $form.attr( 'action' );
-            var posting = $.post( "/url/create", { endpoint: '77', passcode: $('#passcode').val() } );
+            var posting = $.post( "/url/create", { longURL: $('#url').val(),shortURL: $('#shorturl').val(), privateOrPublic: $('#secure').val(),timeOfDeletion: $('#validity').val()  } );
             posting.done(function( data ) {
-                alert('success');
+                $('#main').html(data.message).show().siblings('div').hide();
             })
-            .fail(function() {
-                alert( "Wrong" );
+            .fail(function(err) {
+                alert(err.responseJSON.error);
             });
         });
-    </script>
 
+    </script>
+    
 </body>
 </html>

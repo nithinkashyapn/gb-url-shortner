@@ -7,19 +7,18 @@ const URL = require('../models/url');
 
 //POST HTTP method
 router.get('/', (req,res) => {
-    res.send("Whom");
+    res.redirect("/");
 });
 
 //POST HTTP method
 router.post('/create', (req,res) => {
 
     let body = req.body;
-    console.log(body);
     URL.find({shortURL: body.shortURL})
     .then((urlFound)=>{
         if(urlFound.length > 0)
         {
-            res.send("URL already exists");
+            res.status(400).json({ error: 'URL already exists' })
         }
         else 
         {
@@ -32,19 +31,19 @@ router.post('/create', (req,res) => {
                     privateOrPublic: body.privateOrPublic ? body.privateOrPublic : "public"
                 };
         
-                URL.create(data, function (err, data){
-                    if (err) res.send("Could not create a URL")
-                    else res.send("Created a url");
+                URL.create(data, function (err, mongodata){
+                    if (err) res.status(400).json({ error: 'Could not create URL' })
+                    else res.status(200).json({ message: `https://gburlshort.herokuapp.com/` + mongodata.shortURL})
                 });
             }
             else
             {
-                res.send("The input is not a valid URL");
+                res.status(400).json({ error: 'Not a valid URL' })
             }
         }
     })
     .catch((err)=>{
-        res.send("Errored!")
+        res.status(400).json({ error: 'Something went wrong' })
     });
 
 });
