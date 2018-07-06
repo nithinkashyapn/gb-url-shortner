@@ -49,12 +49,12 @@ app.get('/:id', (req,res) => {
             else
             {
                 URL.findOneAndRemove({ shortURL: data.shortURL })
-                    .then(()=>{res.redirect(`http://gameberrylabs.com/`)})
+                    .then(()=>{res.redirect(`http://example.com/`)})
                     .catch(()=>{res.send(`Could not remove URL`)});
             }
         })
         .catch(err=>{
-            res.redirect(`http://gameberrylabs.com/`);
+            res.redirect(`http://example.com/`);
         });
 
 })
