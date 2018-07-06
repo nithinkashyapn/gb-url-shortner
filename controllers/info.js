@@ -7,7 +7,7 @@ const path = require('path');
 router.get('/:id', (req,res) => {
 
     res.set('Content-Type', 'text/html');
-    var responseHTML = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>GameBerry URL Shortner</title><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"><style>body { padding-top:50px; }</style></head><body>`;
+    var responseHTML = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><title>URL Shortner</title><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css"><style>body { padding-top:50px; }</style></head><body>`;
     responseHTML += `<div class="container" style="text-align:center; word-wrap: break-word;"><p><pre><code><u>Logs</u><br><br>`
 
     URL.find({shortURL: req.params.id})
