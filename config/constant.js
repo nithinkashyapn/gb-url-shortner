@@ -1,3 +1,3 @@
 module.exports = {
-    domain: "https://gburlshort.herokuapp.com/"
+    domain: "https://example.herokuapp.com/"
 }
