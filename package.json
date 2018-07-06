@@ -24,11 +24,11 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nithinkashyapn/gb-url-shortner.git"
+    "url": "git+https://github.com/nithinkashyapn/url-shortner.git"
   },
   "bugs": {
-    "url": "https://github.com/nithinkashyapn/gb-url-shortner/issues"
+    "url": "https://github.com/nithinkashyapn/url-shortner/issues"
   },
-  "homepage": "https://github.com/nithinkashyapn/gb-url-shortner#readme",
+  "homepage": "https://github.com/nithinkashyapn/url-shortner#readme",
   "description": ""
 }
